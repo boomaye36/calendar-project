@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @EntityScan("com.example.calendarcore") // com.example.calendarcore 패키지 스캔 설정
 @EnableJpaRepositories("com.example.calendarcore") // com.example.calendar
+@EnableJpaAuditing
 public class CalendarApiApplication {
 
     private final SimpleEntityRepository repository;
