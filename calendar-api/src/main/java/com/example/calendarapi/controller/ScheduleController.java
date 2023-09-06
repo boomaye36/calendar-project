@@ -2,8 +2,10 @@ package com.example.calendarapi.controller;
 
 import com.example.calendarapi.dto.AuthUser;
 import com.example.calendarapi.dto.EventCreateReq;
+import com.example.calendarapi.dto.NotificationCreateReq;
 import com.example.calendarapi.dto.TaskCreateReq;
 import com.example.calendarapi.service.EventService;
+import com.example.calendarapi.service.NotificationService;
 import com.example.calendarapi.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ import static com.example.calendarapi.service.LoginService.LOGIN_SESSION_KEY;
 public class ScheduleController {
     private final TaskService taskService;
     private final EventService eventService;
+    private final NotificationService notificationService;
 
     @PostMapping("/tasks")
     public ResponseEntity<Void> createTask(
@@ -36,6 +39,14 @@ public class ScheduleController {
             @RequestBody EventCreateReq eventCreateReq,
             AuthUser authUser){
         eventService.create(eventCreateReq, authUser);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/notifications")
+    public ResponseEntity<Void> createNotification(
+            @RequestBody NotificationCreateReq notificationCreateReq,
+            AuthUser authUser){
+        notificationService.create(notificationCreateReq, authUser);
         return ResponseEntity.ok().build();
     }
 }
