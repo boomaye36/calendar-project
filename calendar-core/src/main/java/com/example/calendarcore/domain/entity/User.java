@@ -1,5 +1,6 @@
 package com.example.calendarcore.domain.entity;
 
+import com.example.calendarcore.util.Encryptor;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,5 +21,9 @@ public class User extends BaseEntity{
         this.email = email;
         this.password = password;
         this.birthDay = birthDay;
+    }
+
+    public boolean isMatch(Encryptor encryptor, String password) {
+        return encryptor.isMatch(password, this.password);
     }
 }
