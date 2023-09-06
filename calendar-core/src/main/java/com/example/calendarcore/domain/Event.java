@@ -22,6 +22,10 @@ public class Event {
         this.schedule = schedule;
     }
 
+    public boolean isOverlapped(LocalDateTime startAt, LocalDateTime endAt) {
+        return schedule.getStartAt().isBefore(endAt) && schedule.getEndAt().isAfter(startAt);
+    }
+
 //    public void addEngagement(Engagement engagement) {
 //        if (engagements == null){
 //            engagements = Arrays.asList(engagement);
