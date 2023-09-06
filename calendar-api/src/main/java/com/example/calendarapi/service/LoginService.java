@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginService {
     private final UserService userService;
-    private final static String LOGIN_SESSION_KEY = "USER_ID";
+    public final static String LOGIN_SESSION_KEY = "USER_ID";
     /**
      * UserService에 Create을 담당한다. (이미 존재하는 경우의 유저 검정은 UserService에서 함) (Application layer 일만 함)
      * 생성이 되면 session에 담고 리턴
@@ -53,6 +53,6 @@ public class LoginService {
     }
 
     public void logout(HttpSession session){
-
+        session.removeAttribute(LOGIN_SESSION_KEY);
     }
 }

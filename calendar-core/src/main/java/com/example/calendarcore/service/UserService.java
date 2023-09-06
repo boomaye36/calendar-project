@@ -3,6 +3,7 @@ package com.example.calendarcore.service;
 import com.example.calendarcore.domain.entity.User;
 import com.example.calendarcore.domain.entity.repository.UserRepository;
 import com.example.calendarcore.dto.UserCreateReq;
+import com.example.calendarcore.util.BCryptEncryptor;
 import com.example.calendarcore.util.Encryptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class UserService {
     private final Encryptor encryptor;
 
     private final UserRepository userRepository;
-
+    private final BCryptEncryptor bCryptEncryptor;
     @Transactional
 
     public User create(UserCreateReq userCreateReq) {
@@ -25,7 +26,7 @@ public class UserService {
          return userRepository.save(new User(
                  userCreateReq.getName(),
                  userCreateReq.getEmail(),
-                 userCreateReq.getPassword(),
+                 bCryptEncryptor.encrypt(userCreateReq.getPassword()),
                  userCreateReq.getBirthday()
          ));
     }
@@ -35,5 +36,10 @@ public class UserService {
     public Optional<User> findPwMatchUser(String email, String password) {
         return userRepository.findByEmail(email)
                 .map(user -> user.isMatch(encryptor, password) ? user : null);
+    }
+
+    public User findByUserId(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("no user by id"));
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example")
 @RestController
 @EntityScan("com.example.calendarcore") // com.example.calendarcore 패키지 스캔 설정
 @EnableJpaRepositories("com.example.calendarcore") // com.example.calendar

@@ -1,6 +1,9 @@
 package com.example.calendarcore.util;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class BCryptEncryptor implements Encryptor{
     @Override
