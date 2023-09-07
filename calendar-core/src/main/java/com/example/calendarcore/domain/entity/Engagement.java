@@ -2,6 +2,7 @@ package com.example.calendarcore.domain.entity;
 
 import com.example.calendarcore.domain.Event;
 import com.example.calendarcore.domain.RequestStatus;
+import com.example.calendarcore.util.Period;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,11 +29,22 @@ public class Engagement extends BaseEntity{
     private User attendee;
     @Enumerated(EnumType.STRING)
     private RequestStatus requestStatus;
+
+//    public Engagement(Schedule eventSchedule, User attendee) {
+//        assert eventSchedule.getScheduleType() == ScheduleType.EVENT;
+//        this.schedule = eventSchedule;
+//        this.requestStatus = RequestStatus.REQUESTED;
+//        this.attendee = attendee;
+//    }
     public Event getEvent(){
         return schedule.toEvent();
     }
 
     public boolean isOverlapped(LocalDate date) {
         return this.schedule.isOverlapped(date);
+    }
+
+    public boolean isOverlapped(Period period) {
+        return this.schedule.isOverlapped(period);
     }
 }
