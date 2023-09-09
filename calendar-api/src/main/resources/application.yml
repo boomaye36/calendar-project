@@ -8,6 +8,20 @@ spring:
     resources:
       cache:
         period: 0
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 32182308@dankook.ac.kr
+    password: ymbwwgrtlziewdmg
+
+    properties:
+      mail:
+        smtp:
+          socketFactory.class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3307/calendar_db?useSSL=false&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -37,7 +38,7 @@ public class ScheduleController {
 
     @PostMapping("/events")
     public ResponseEntity<Void> createEvent(
-            @RequestBody EventCreateReq eventCreateReq,
+            @Valid @RequestBody EventCreateReq eventCreateReq,
             AuthUser authUser){
         eventService.create(eventCreateReq, authUser);
         return ResponseEntity.ok().build();
