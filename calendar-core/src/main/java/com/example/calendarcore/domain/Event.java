@@ -3,6 +3,7 @@ package com.example.calendarcore.domain;
 import com.example.calendarcore.domain.entity.Engagement;
 import com.example.calendarcore.domain.entity.Schedule;
 import com.example.calendarcore.domain.entity.User;
+import com.example.calendarcore.util.Period;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,4 +35,11 @@ public class Event {
 //            engagements.add(engagement);
 //        }
 //    }
+    public RequestStatus getRequestStatus(){
+        return this.getRequestStatus();
+    }
+
+    public Period getPeriod() {
+        return Period.of(this.schedule.getStartAt(), this.schedule.getEndAt());
+    }
 }

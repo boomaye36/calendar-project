@@ -12,9 +12,7 @@ public class EventCreateReq {
     @NotBlank
     private final String title;
     private final String description;
-    @NotBlank
     private final LocalDateTime startAt;
-    @NotBlank
     private final LocalDateTime endAt;
     private final List<Long> attendeeIds;
 
