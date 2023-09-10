@@ -1,6 +1,7 @@
 package com.example.calendarcore.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
